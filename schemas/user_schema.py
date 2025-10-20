@@ -2,7 +2,6 @@ from __future__ import annotations
 from typing import Optional, List
 from datetime import datetime
 from pydantic import BaseModel, Field, field_validator
-
 from .common import MongoBase, _strip, DogBrief
 
 class UserBase(BaseModel):
@@ -11,7 +10,7 @@ class UserBase(BaseModel):
     name: Optional[str] = None
     phone: Optional[str] = None
     address: Optional[str] = None
-
+    role:Optional[str] = None
     # Compatibilidad: si alguna vez existió password_hash, se marca deprecado.
     password_hash: Optional[str] = Field(
         default=None,
@@ -31,8 +30,9 @@ class UserUpdate(BaseModel):
     name: Optional[str] = None
     phone: Optional[str] = None
     address: Optional[str] = None
+    dogs:List[DogBrief] = []
 
-    @field_validator("name", "phone", "address", mode="before")
+    @field_validator("name", "phone", "address", "dogs", mode="before")
     @classmethod
     def _clean(cls, v):
         return _strip(v)

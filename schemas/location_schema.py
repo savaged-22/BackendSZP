@@ -3,7 +3,7 @@ from typing import Optional
 from datetime import datetime
 from pydantic import BaseModel, Field
 
-from .common import MongoBase, DogRef
+from .common import MongoBase, DogRef, UserRef
 
 class LocationBase(BaseModel):
     dog_id: str = Field(..., description="ID (_id) del Dog")
@@ -18,3 +18,6 @@ class LocationCreate(LocationBase):
 class LocationOut(MongoBase, LocationBase):
     # Relación N:1 -> Dog (referencia ligera)
     dog: DogRef
+
+class LocationUser(MongoBase,LocationBase):
+    user:UserRef

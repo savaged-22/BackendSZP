@@ -7,4 +7,4 @@ class Dog(BaseModel):
     raze: str | None
     age: str | None
     chip_id: str | None 
-
+    trainer_id:int | None
