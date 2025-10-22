@@ -11,6 +11,7 @@ class UserBase(BaseModel):
     phone: Optional[str] = None
     address: Optional[str] = None
     role:Optional[str] = None
+    dogs:List[DogBrief] = []
     # Compatibilidad: si alguna vez existió password_hash, se marca deprecado.
     password_hash: Optional[str] = Field(
         default=None,
